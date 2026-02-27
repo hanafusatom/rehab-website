@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Claude Code / エージェント関連（このPCでの作業ファイル）
+.claude/
+.agents/
+skills/
+skills-lock.json
+
+# エディタ
+.vscode/
+*.swp
+*.swo
+
+# バックアップファイル
+*.bak
+backup/

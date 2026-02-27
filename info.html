@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>患者様へのご案内 | 神戸大学医学部附属病院 リハビリテーション科</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* 外来表 */
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 6px; }
+.scroll-hint { font-size: 11px; color: #888; margin-bottom: 6px; display: none; }
+.schedule-table { width: 100%; border-collapse: collapse; min-width: 460px; font-size: 13px; }
+.schedule-table th {
+  background: #1a5fa8; color: #fff; padding: 8px 10px;
+  font-size: 12px; font-weight: 500; text-align: center; white-space: nowrap;
+}
+.schedule-table td {
+  padding: 8px 10px; font-size: 12px; border-bottom: 1px solid #dde8f5;
+  text-align: center; color: #555;
+}
+.schedule-table tr:nth-child(even) td { background: #f8fafd; }
+.schedule-table td:first-child { font-weight: 600; color: #333; }
+.doctor-name { font-weight: 700; color: #1a2f6e; }
+.table-note { font-size: 11px; color: #888; margin-top: 6px; }
+
+/* 取り扱い疾患 */
+.disease-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 6px;
+}
+.disease-item {
+  background: #f8fafd; border: 1px solid #dde8f5; border-radius: 3px;
+  padding: 7px 10px; font-size: 12px; color: #444;
+  display: flex; align-items: center; gap: 6px;
+}
+.disease-item::before { content: '✦'; color: #1a5fa8; font-size: 9px; flex-shrink: 0; }
+
+/* 注意事項ボックス */
+.notice-box {
+  background: #f0f5fc; border: 1px solid #b0c8e8;
+  border-left: 4px solid #1a5fa8; border-radius: 3px;
+  padding: 12px 16px; margin-bottom: 10px;
+}
+.notice-box h4 { font-size: 13px; font-weight: 700; color: #1a5fa8; margin-bottom: 6px; }
+.notice-box p, .notice-box li { font-size: 12px; line-height: 1.9; color: #555; }
+.notice-box ul { padding-left: 16px; }
+
+/* アクセス */
+.access-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.access-item {
+  background: #f8fafd; border: 1px solid #dde8f5; border-radius: 3px; padding: 12px 14px;
+}
+.access-item h4 { font-size: 12px; font-weight: 700; color: #1a2f6e; margin-bottom: 6px; }
+.access-item p { font-size: 12px; line-height: 1.9; color: #555; }
+
+@media (max-width: 640px) {
+  .scroll-hint { display: block; }
+  .access-grid { grid-template-columns: 1fr; }
+  .disease-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 360px) {
+  .disease-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="header-top"><div class="inner">神戸大学医学部附属病院</div></div>
+<div id="header-main">
+  <div class="inner">
+    <div class="site-title">
+      <a href="index.html">
+        <span class="univ">神戸大学医学部附属病院</span>
+        <span class="dept">リハビリテーション科</span>
+        <span class="dept-en">Department of Rehabilitation Medicine</span>
+      </a>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="header-logo-mark">♿</div>
+      <button class="sp-menu-btn" id="spMenuBtn" aria-label="メニュー"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</div>
+<div id="gnav">
+  <div class="inner">
+    <ul>
+      <li><a href="index.html">トップ</a></li>
+      <li><a href="greeting.html">ご挨拶</a></li>
+      <li><a href="staff.html">スタッフ紹介</a></li>
+      <li><a href="info.html" class="active">患者様へ</a></li>
+      <li><a href="study.html">研究と業績</a></li>
+      <li><a href="training.html">研修・入局希望</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="page-title-bar">
+  <div class="inner">
+    <span class="page-en">For Patients</span>
+    <h1>患者様へのご案内</h1>
+  </div>
+</div>
+
+<div id="main-wrap">
+  <div id="content">
+
+    <div class="content-block">
+      <div class="block-head">
+        <span class="block-en">Outpatient Schedule</span>
+        <h2>外来担当表</h2>
+      </div>
+      <p class="scroll-hint">← 横にスクロールできます</p>
+      <div class="table-wrap">
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>診察</th>
+              <th>月曜日</th><th>火曜日</th><th>水曜日</th><th>木曜日</th><th>金曜日</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>午前</td>
+              <td><span class="doctor-name" data-cms="sched_mon_am" data-cms-type="line" data-cms-label="月・午前">○○先生（仮）</span></td>
+              <td><span class="doctor-name" data-cms="sched_tue_am" data-cms-type="line" data-cms-label="火・午前">○○先生（仮）</span></td>
+              <td><span class="doctor-name" data-cms="sched_wed_am" data-cms-type="line" data-cms-label="水・午前">○○先生（仮）</span></td>
+              <td><span class="doctor-name" data-cms="sched_thu_am" data-cms-type="line" data-cms-label="木・午前">○○先生（仮）</span></td>
+              <td><span class="doctor-name" data-cms="sched_fri_am" data-cms-type="line" data-cms-label="金・午前">○○先生（仮）</span></td>
+            </tr>
+            <tr>
+              <td>午後</td>
+              <td data-cms="sched_mon_pm" data-cms-type="line" data-cms-label="月・午後">—</td>
+              <td><span class="doctor-name" data-cms="sched_tue_pm" data-cms-type="line" data-cms-label="火・午後">○○先生（仮）</span></td>
+              <td data-cms="sched_wed_pm" data-cms-type="line" data-cms-label="水・午後">—</td>
+              <td><span class="doctor-name" data-cms="sched_thu_pm" data-cms-type="line" data-cms-label="木・午後">○○先生（仮）</span></td>
+              <td data-cms="sched_fri_pm" data-cms-type="line" data-cms-label="金・午後">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note" data-cms="sched_note" data-cms-type="line" data-cms-label="外来表注記">※担当医は変更となる場合があります。詳細はお問い合わせください。</p>
+    </div>
+
+    <div class="content-block">
+      <div class="block-head">
+        <span class="block-en">Target Diseases</span>
+        <h2>取り扱い疾患・対象</h2>
+      </div>
+      <div class="disease-grid">
+        <div class="disease-item">脳卒中（脳梗塞・脳出血）</div>
+        <div class="disease-item">パーキンソン病</div>
+        <div class="disease-item">脊髄損傷</div>
+        <div class="disease-item">骨折・関節疾患</div>
+        <div class="disease-item">脊椎疾患（腰椎・頸椎）</div>
+        <div class="disease-item">心不全・心筋梗塞後</div>
+        <div class="disease-item">呼吸器疾患（COPD等）</div>
+        <div class="disease-item">がんのリハビリテーション</div>
+        <div class="disease-item">高次脳機能障害</div>
+        <div class="disease-item">嚥下障害</div>
+        <div class="disease-item">失語症・構音障害</div>
+        <div class="disease-item">廃用症候群</div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-head">
+        <span class="block-en">How to Visit</span>
+        <h2>受診の流れ</h2>
+      </div>
+      <div class="notice-box">
+        <h4 data-cms="notice1_title" data-cms-type="line" data-cms-label="注意1タイトル">⚠ 完全紹介予約制です</h4>
+        <p data-cms="notice1_body" data-cms-type="text" data-cms-label="注意1本文">当科は完全紹介予約制を採用しています。かかりつけ医・主治医の先生からの紹介状（診療情報提供書）が必要です。まずはかかりつけ医にご相談ください。</p>
+      </div>
+      <div class="notice-box">
+        <h4 data-cms="notice2_title" data-cms-type="line" data-cms-label="注意2タイトル">📋 受診当日にお持ちいただくもの</h4>
+        <ul data-cms="notice2_body" data-cms-type="text" data-cms-label="持ち物リスト">
+          <li>診療情報提供書（紹介状）</li>
+          <li>保険証・各種医療受給者証</li>
+          <li>お薬手帳（お持ちの方）</li>
+          <li>障害者手帳・身体機能に関する書類（お持ちの方）</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-head">
+        <span class="block-en">Access</span>
+        <h2>アクセス</h2>
+      </div>
+      <div class="access-grid">
+        <div class="access-item">
+          <h4>📍 所在地</h4>
+          <p data-cms="access_address" data-cms-type="text" data-cms-label="所在地">〒650-0017<br>神戸市中央区楠町7丁目5番1号<br>神戸大学医学部附属病院<br>リハビリテーション科</p>
+        </div>
+        <div class="access-item">
+          <h4>🚉 公共交通機関</h4>
+          <p data-cms="access_transit" data-cms-type="text" data-cms-label="交通アクセス">地下鉄西神・山手線<br>「大倉山駅」下車 徒歩5分<br>JR神戸線「神戸駅」より<br>北へ徒歩約15分</p>
+        </div>
+        <div class="access-item">
+          <h4>📞 お問い合わせ</h4>
+          <p>TEL: <a href="tel:0783825111">078-382-5111</a>（代表）<br>直通: <a href="tel:0783826826">078-382-6826</a><br>平日 9:00〜17:00 受付</p>
+        </div>
+        <div class="access-item">
+          <h4>✉️ メール</h4>
+          <p><a href="mailto:okanoy@med.kobe-u.ac.jp">okanoy@med.kobe-u.ac.jp</a><br><br>お急ぎの場合はお電話でお問い合わせください。</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="sidebar">
+    <div class="sb-block">
+      <div class="sb-title">メニュー</div>
+      <nav class="sb-nav">
+        <ul>
+          <li><a href="greeting.html">ご挨拶</a></li>
+          <li><a href="staff.html">スタッフ紹介</a></li>
+          <li><a href="info.html" class="active">患者様へのご案内</a></li>
+          <li><a href="study.html">研究と業績</a></li>
+          <li><a href="training.html">研修・入局希望</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="sb-block">
+      <div class="sb-title">お問い合わせ</div>
+      <div class="sb-info">
+        <span class="label">代表（直通）</span>
+        <span class="tel">078-382-6826</span>
+        <span class="label">受付時間</span><br>
+        平日 9:00〜17:00
+      </div>
+    </div>
+    <div class="sb-block">
+      <div class="sb-title">研修・入局希望</div>
+      <div class="sb-recruit">
+        <p>後期研修医・入局を希望される方はお気軽にご連絡ください。</p>
+        <a href="training.html" class="btn-blue" style="display:block;text-align:center;font-size:12px;">詳しくはこちら</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="footer">
+  <nav class="footer-nav">
+    <a href="index.html">トップ</a>
+    <a href="greeting.html">ご挨拶</a>
+    <a href="staff.html">スタッフ紹介</a>
+    <a href="info.html">患者様へのご案内</a>
+    <a href="study.html">研究と業績</a>
+    <a href="training.html">研修・入局希望</a>
+  </nav>
+  <p>〒650-0017 神戸市中央区楠町7丁目5番1号　神戸大学医学部附属病院</p>
+  <p>Copyright &copy; 神戸大学医学部附属病院 リハビリテーション科 All Rights Reserved.</p>
+</div>
+
+<script>
+const spBtn = document.getElementById('spMenuBtn');
+const gnav = document.getElementById('gnav');
+spBtn.addEventListener('click', () => { gnav.classList.toggle('open'); });
+</script>
+<script src="cms-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+/* ===================================================
+   神戸大学 リハビリテーション科 - 共通スタイルシート
+   ライトデザイン版
+=================================================== */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+  font-size: 14px;
+  color: #333;
+  background: #fff;
+  line-height: 1.8;
+  -webkit-text-size-adjust: 100%;
+}
+a { color: #1a5fa8; text-decoration: none; }
+a:hover { text-decoration: underline; }
+img { max-width: 100%; height: auto; }
+
+/* === ヘッダー上部 === */
+#header-top {
+  background: #1a5fa8;
+  padding: 6px 0;
+  font-size: 11px;
+  color: rgba(255,255,255,0.85);
+  text-align: right;
+}
+#header-top .inner { max-width: 1000px; margin: 0 auto; padding: 0 16px; }
+
+/* === ヘッダーメイン === */
+#header-main {
+  background: #fff;
+  border-bottom: 3px solid #1a5fa8;
+  padding: 14px 0;
+}
+#header-main .inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.site-title { line-height: 1.4; }
+.site-title a { text-decoration: none; }
+.site-title .univ { font-size: 11px; color: #666; display: block; }
+.site-title .dept { font-size: 18px; font-weight: 700; color: #1a2f6e; display: block; letter-spacing: 0.04em; }
+.site-title .dept-en { font-size: 11px; color: #888; display: block; letter-spacing: 0.06em; }
+.header-logo-mark {
+  width: 60px; height: 60px;
+  background: #1a5fa8; border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 28px; flex-shrink: 0;
+}
+
+/* === グローバルナビ === */
+#gnav { background: #1a5fa8; }
+#gnav .inner { max-width: 1000px; margin: 0 auto; }
+#gnav ul { display: flex; list-style: none; }
+#gnav ul li a {
+  display: block; color: #fff; font-size: 13px; font-weight: 500;
+  padding: 11px 20px; transition: background 0.2s;
+  border-right: 1px solid rgba(255,255,255,0.2); white-space: nowrap;
+}
+#gnav ul li:first-child a { border-left: 1px solid rgba(255,255,255,0.2); }
+#gnav ul li a:hover, #gnav ul li a.active { background: rgba(255,255,255,0.2); text-decoration: none; }
+
+/* === SPメニューボタン === */
+.sp-menu-btn {
+  display: none; flex-direction: column; justify-content: center;
+  gap: 5px; width: 40px; height: 40px;
+  background: none; border: none; cursor: pointer; padding: 8px;
+}
+.sp-menu-btn span { display: block; width: 22px; height: 2px; background: #333; border-radius: 2px; transition: all 0.3s; }
+
+/* === ページタイトルバー（サブページ用） === */
+.page-title-bar {
+  background: #e8f0fb;
+  border-bottom: 2px solid #b0c8e8;
+  padding: 18px 16px;
+}
+.page-title-bar .inner { max-width: 1000px; margin: 0 auto; }
+.page-title-bar .page-en {
+  font-size: 11px; letter-spacing: 0.15em;
+  color: #1a5fa8; text-transform: uppercase; display: block; margin-bottom: 4px;
+}
+.page-title-bar h1 {
+  font-size: 20px; font-weight: 700; color: #1a2f6e; letter-spacing: 0.04em;
+}
+
+/* === メインレイアウト === */
+#main-wrap {
+  max-width: 1000px; margin: 0 auto;
+  padding: 28px 16px; display: flex; gap: 28px; align-items: flex-start;
+}
+#content { flex: 1; min-width: 0; }
+#sidebar { width: 220px; flex-shrink: 0; }
+
+/* === コンテンツブロック === */
+.content-block {
+  background: #fff; border: 1px solid #dde8f5;
+  border-radius: 4px; padding: 20px 22px; margin-bottom: 24px;
+}
+.content-block:last-child { margin-bottom: 0; }
+
+/* === ブロック見出し === */
+.block-head { border-left: 4px solid #1a5fa8; padding-left: 10px; margin-bottom: 14px; }
+.block-head .block-en { font-size: 11px; color: #1a5fa8; letter-spacing: 0.12em; text-transform: uppercase; display: block; }
+.block-head h2 { font-size: 15px; font-weight: 700; color: #1a2f6e; }
+
+/* === ボタン === */
+.btn-blue {
+  display: inline-block; background: #1a5fa8; color: #fff;
+  padding: 8px 20px; font-size: 13px; font-weight: 700;
+  border-radius: 3px; transition: background 0.2s;
+}
+.btn-blue:hover { background: #134784; text-decoration: none; }
+.btn-line {
+  display: inline-block; background: #fff; color: #1a5fa8;
+  border: 1px solid #1a5fa8; padding: 8px 20px; font-size: 13px;
+  font-weight: 500; border-radius: 3px; transition: all 0.2s;
+}
+.btn-line:hover { background: #e8f0fb; text-decoration: none; }
+
+/* === サイドバー === */
+#sidebar .sb-block {
+  background: #fff; border: 1px solid #dde8f5;
+  border-radius: 4px; margin-bottom: 18px; overflow: hidden;
+}
+.sb-title {
+  background: #1a5fa8; color: #fff; font-size: 13px; font-weight: 700;
+  padding: 8px 14px; letter-spacing: 0.04em;
+}
+.sb-nav ul { list-style: none; }
+.sb-nav ul li { border-bottom: 1px solid #e8f0fb; }
+.sb-nav ul li:last-child { border-bottom: none; }
+.sb-nav ul li a {
+  display: block; padding: 10px 14px; font-size: 13px; color: #333; transition: background 0.2s;
+}
+.sb-nav ul li a::before { content: '›'; color: #1a5fa8; margin-right: 6px; font-size: 15px; }
+.sb-nav ul li a:hover, .sb-nav ul li a.active { background: #f0f5fc; text-decoration: none; color: #1a5fa8; }
+.sb-info { padding: 14px; font-size: 12px; color: #555; line-height: 1.9; }
+.sb-info .tel { font-size: 16px; font-weight: 700; color: #1a2f6e; display: block; margin: 4px 0; }
+.sb-info .label { font-size: 11px; color: #888; }
+.sb-recruit { padding: 14px; }
+.sb-recruit p { font-size: 12px; color: #555; line-height: 1.85; margin-bottom: 10px; }
+
+/* === フッター === */
+#footer {
+  background: #1a2f6e; color: rgba(255,255,255,0.75);
+  text-align: center; padding: 18px 16px; font-size: 12px; line-height: 2; margin-top: 8px;
+}
+#footer .footer-nav {
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 0; margin-bottom: 8px;
+}
+#footer .footer-nav a {
+  color: rgba(255,255,255,0.8); font-size: 12px;
+  padding: 0 10px; border-right: 1px solid rgba(255,255,255,0.3); line-height: 1.4;
+}
+#footer .footer-nav a:last-child { border-right: none; }
+#footer .footer-nav a:hover { color: #fff; text-decoration: none; }
+
+/* === レスポンシブ === */
+@media (max-width: 768px) {
+  #gnav ul { display: none; }
+  #gnav.open ul { display: flex; flex-direction: column; }
+  #gnav.open ul li a { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); }
+  .sp-menu-btn { display: flex; }
+  #header-main .inner { flex-wrap: wrap; gap: 8px; }
+  #main-wrap { flex-direction: column; gap: 20px; }
+  #sidebar { width: 100%; }
+  #footer .footer-nav { flex-direction: column; align-items: center; gap: 4px; }
+  #footer .footer-nav a { border-right: none; }
+}
+@media (max-width: 480px) {
+  .site-title .dept { font-size: 15px; }
+  #main-wrap { padding: 16px 12px; }
+}

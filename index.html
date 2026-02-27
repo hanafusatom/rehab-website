@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>神戸大学医学部附属病院 リハビリテーション科</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* === リセット・基本 === */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+  font-size: 14px;
+  color: #333;
+  background: #fff;
+  line-height: 1.8;
+}
+a { color: #1a5fa8; text-decoration: none; }
+a:hover { text-decoration: underline; }
+img { max-width: 100%; height: auto; }
+
+/* === ヘッダー === */
+#header-top {
+  background: #1a5fa8;
+  padding: 6px 0;
+  font-size: 11px;
+  color: rgba(255,255,255,0.8);
+  text-align: right;
+}
+#header-top .inner { max-width: 1000px; margin: 0 auto; padding: 0 16px; }
+
+#header-main {
+  background: #fff;
+  border-bottom: 3px solid #1a5fa8;
+  padding: 14px 0;
+}
+#header-main .inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.site-title {
+  line-height: 1.4;
+}
+.site-title .univ {
+  font-size: 11px;
+  color: #666;
+  display: block;
+}
+.site-title .dept {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a2f6e;
+  display: block;
+  letter-spacing: 0.04em;
+}
+.site-title .dept-en {
+  font-size: 11px;
+  color: #888;
+  display: block;
+  letter-spacing: 0.06em;
+}
+.header-logo-mark {
+  width: 60px;
+  height: 60px;
+  background: #1a5fa8;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+/* === グローバルナビ === */
+#gnav {
+  background: #1a5fa8;
+}
+#gnav .inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+#gnav ul {
+  display: flex;
+  list-style: none;
+}
+#gnav ul li a {
+  display: block;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 11px 20px;
+  transition: background 0.2s;
+  border-right: 1px solid rgba(255,255,255,0.2);
+  white-space: nowrap;
+}
+#gnav ul li:first-child a { border-left: 1px solid rgba(255,255,255,0.2); }
+#gnav ul li a:hover { background: rgba(255,255,255,0.15); text-decoration: none; }
+#gnav ul li a.active { background: rgba(255,255,255,0.2); }
+
+/* === ハンバーガー（SP） === */
+.sp-menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px; height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+.sp-menu-btn span {
+  display: block;
+  width: 22px; height: 2px;
+  background: #333;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+/* === メインレイアウト === */
+#main-wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 28px 16px;
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+}
+#content { flex: 1; min-width: 0; }
+#sidebar { width: 220px; flex-shrink: 0; }
+
+/* === バナー（トップ画像エリア） === */
+#top-banner {
+  background: linear-gradient(180deg, #e8f0fb 0%, #c8ddf5 100%);
+  border: 1px solid #b0c8e8;
+  border-radius: 4px;
+  padding: 30px 28px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+#top-banner::after {
+  content: '';
+  position: absolute;
+  right: -20px; top: -20px;
+  width: 160px; height: 160px;
+  background: radial-gradient(circle, rgba(26,95,168,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.banner-en {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: #1a5fa8;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.banner-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a2f6e;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+.banner-title span { color: #1a5fa8; }
+.banner-desc {
+  font-size: 13px;
+  color: #555;
+  line-height: 2;
+  max-width: 520px;
+}
+.banner-btns {
+  margin-top: 18px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.btn-blue {
+  display: inline-block;
+  background: #1a5fa8;
+  color: #fff;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+.btn-blue:hover { background: #1347842; text-decoration: none; }
+.btn-line {
+  display: inline-block;
+  background: #fff;
+  color: #1a5fa8;
+  border: 1px solid #1a5fa8;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 3px;
+  transition: all 0.2s;
+}
+.btn-line:hover { background: #e8f0fb; text-decoration: none; }
+
+/* === セクションタイトル === */
+.sec-head {
+  border-left: 4px solid #1a5fa8;
+  padding-left: 10px;
+  margin-bottom: 14px;
+}
+.sec-head h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a2f6e;
+  letter-spacing: 0.03em;
+}
+.sec-head .sec-en {
+  font-size: 11px;
+  color: #1a5fa8;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* === お知らせ === */
+#news-section {
+  background: #fff;
+  border: 1px solid #dde8f5;
+  border-radius: 4px;
+  padding: 20px 22px;
+  margin-bottom: 24px;
+}
+.news-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.news-table tr {
+  border-bottom: 1px dotted #d0dff0;
+}
+.news-table tr:last-child { border-bottom: none; }
+.news-table td {
+  padding: 9px 6px;
+  vertical-align: top;
+  font-size: 13px;
+  line-height: 1.65;
+}
+.news-date {
+  width: 90px;
+  color: #666;
+  white-space: nowrap;
+  padding-right: 12px !important;
+  font-size: 12px;
+}
+.badge-new {
+  display: inline-block;
+  background: #d32f2f;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 2px;
+  margin-left: 4px;
+  vertical-align: middle;
+  line-height: 1.5;
+}
+.news-more {
+  text-align: right;
+  margin-top: 12px;
+  font-size: 12px;
+}
+.news-more a::after { content: ' ›'; }
+
+/* === 科の紹介 === */
+#about-section {
+  background: #fff;
+  border: 1px solid #dde8f5;
+  border-radius: 4px;
+  padding: 20px 22px;
+  margin-bottom: 24px;
+}
+.about-body {
+  font-size: 13px;
+  line-height: 2;
+  color: #444;
+  margin-bottom: 16px;
+}
+.about-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.about-links a {
+  display: inline-block;
+  background: #f0f5fc;
+  border: 1px solid #b8d0ec;
+  color: #1a5fa8;
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+.about-links a:hover { background: #dde8f8; text-decoration: none; }
+
+/* === 当科の特色 === */
+#features-section {
+  background: #fff;
+  border: 1px solid #dde8f5;
+  border-radius: 4px;
+  padding: 20px 22px;
+  margin-bottom: 24px;
+}
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.feature-item {
+  display: flex;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px dotted #d0dff0;
+  align-items: flex-start;
+}
+.feature-item:last-child { border-bottom: none; padding-bottom: 0; }
+.feature-num {
+  width: 34px;
+  height: 34px;
+  background: #1a5fa8;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.feature-body h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a2f6e;
+  margin-bottom: 4px;
+}
+.feature-body p {
+  font-size: 12px;
+  color: #555;
+  line-height: 1.85;
+}
+
+/* === お問い合わせ === */
+#contact-section {
+  background: #f4f8fc;
+  border: 1px solid #dde8f5;
+  border-radius: 4px;
+  padding: 20px 22px;
+  margin-bottom: 0;
+}
+.contact-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.contact-table tr { border-bottom: 1px solid #dde8f5; }
+.contact-table tr:last-child { border-bottom: none; }
+.contact-table th {
+  width: 80px;
+  padding: 8px 10px 8px 0;
+  color: #666;
+  font-weight: 500;
+  vertical-align: top;
+  white-space: nowrap;
+}
+.contact-table td {
+  padding: 8px 0;
+  color: #333;
+}
+.contact-table td a { color: #1a5fa8; }
+
+/* === サイドバー === */
+#sidebar .sb-block {
+  background: #fff;
+  border: 1px solid #dde8f5;
+  border-radius: 4px;
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+.sb-title {
+  background: #1a5fa8;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 14px;
+  letter-spacing: 0.04em;
+}
+.sb-nav ul {
+  list-style: none;
+}
+.sb-nav ul li {
+  border-bottom: 1px solid #e8f0fb;
+}
+.sb-nav ul li:last-child { border-bottom: none; }
+.sb-nav ul li a {
+  display: block;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #333;
+  transition: background 0.2s;
+  position: relative;
+}
+.sb-nav ul li a::before {
+  content: '›';
+  color: #1a5fa8;
+  margin-right: 6px;
+  font-size: 15px;
+  line-height: 1;
+}
+.sb-nav ul li a:hover { background: #f0f5fc; text-decoration: none; }
+
+.sb-info {
+  padding: 14px;
+  font-size: 12px;
+  color: #555;
+  line-height: 1.9;
+}
+.sb-info .tel {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a2f6e;
+  display: block;
+  margin: 4px 0;
+}
+.sb-info .label {
+  font-size: 11px;
+  color: #888;
+}
+
+.sb-recruit {
+  padding: 14px;
+}
+.sb-recruit p {
+  font-size: 12px;
+  color: #555;
+  line-height: 1.85;
+  margin-bottom: 10px;
+}
+
+/* === フッター === */
+#footer {
+  background: #1a2f6e;
+  color: rgba(255,255,255,0.75);
+  text-align: center;
+  padding: 18px 16px;
+  font-size: 12px;
+  line-height: 2;
+  margin-top: 8px;
+}
+#footer .footer-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-bottom: 8px;
+}
+#footer .footer-nav a {
+  color: rgba(255,255,255,0.8);
+  font-size: 12px;
+  padding: 0 10px;
+  border-right: 1px solid rgba(255,255,255,0.3);
+  line-height: 1.4;
+}
+#footer .footer-nav a:last-child { border-right: none; }
+#footer .footer-nav a:hover { color: #fff; text-decoration: none; }
+
+/* === レスポンシブ === */
+@media (max-width: 768px) {
+  #gnav ul { display: none; }
+  #gnav.open ul { display: flex; flex-direction: column; }
+  #gnav.open ul li a { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); }
+  .sp-menu-btn { display: flex; }
+  #header-main .inner { flex-wrap: wrap; gap: 8px; }
+  #main-wrap { flex-direction: column; gap: 20px; }
+  #sidebar { width: 100%; }
+  .banner-btns { flex-direction: column; }
+  .banner-btns a { text-align: center; }
+  .about-links { flex-direction: column; }
+  #footer .footer-nav { flex-direction: column; align-items: center; gap: 4px; }
+  #footer .footer-nav a { border-right: none; }
+}
+@media (max-width: 480px) {
+  .site-title .dept { font-size: 15px; }
+  .banner-title { font-size: 18px; }
+  #main-wrap { padding: 16px 12px; }
+}
+
+/* === お知らせ 編集モード用 === */
+.news-del-cell { display: none; width: 30px; text-align: center; }
+.news-del-btn {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: #d32f2f; color: #fff; border: none; cursor: pointer;
+  font-size: 13px; line-height: 1; padding: 0;
+}
+.news-add-row { display: none; margin-top: 8px; }
+.news-add-btn {
+  width: 100%; padding: 8px;
+  background: transparent; border: 2px dashed #b0c8e8;
+  color: #1a5fa8; font-size: 13px; font-weight: 700;
+  cursor: pointer; border-radius: 3px;
+  font-family: inherit; transition: all 0.2s;
+}
+.news-add-btn:hover { background: #f0f5fc; border-color: #1a5fa8; }
+.cms-edit-mode .news-del-cell { display: table-cell; }
+.cms-edit-mode .news-add-row { display: block; }
+</style>
+</head>
+<body>
+
+<!-- ヘッダー上部 -->
+<div id="header-top">
+  <div class="inner">神戸大学医学部附属病院</div>
+</div>
+
+<!-- ヘッダーメイン -->
+<div id="header-main">
+  <div class="inner">
+    <div class="site-title">
+      <span class="univ">神戸大学医学部附属病院</span>
+      <span class="dept">リハビリテーション科</span>
+      <span class="dept-en">Department of Rehabilitation Medicine</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="header-logo-mark">♿</div>
+      <button class="sp-menu-btn" id="spMenuBtn" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- グローバルナビ -->
+<div id="gnav">
+  <div class="inner">
+    <ul>
+      <li><a href="index.html" class="active">トップ</a></li>
+      <li><a href="greeting.html">ご挨拶</a></li>
+      <li><a href="staff.html">スタッフ紹介</a></li>
+      <li><a href="info.html">患者様へ</a></li>
+      <li><a href="study.html">研究と業績</a></li>
+      <li><a href="training.html">研修・入局希望</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- メインコンテンツ -->
+<div id="main-wrap">
+  <div id="content">
+
+    <!-- バナー -->
+    <div id="top-banner">
+      <p class="banner-en" data-cms="banner_en" data-cms-type="line" data-cms-label="英語キャッチ">Rehabilitation Medicine · Kobe University Hospital</p>
+      <h1 class="banner-title" data-cms="banner_title" data-cms-label="メインタイトル">患者さんの<span>回復</span>を<br>チーム一丸で支える</h1>
+      <p class="banner-desc" data-cms="banner_desc" data-cms-label="リード文">神戸大学医学部附属病院リハビリテーション科は、最新のリハビリテーション医学に基づき、患者さんの機能回復と社会復帰を多職種チームで支援します。</p>
+      <div class="banner-btns">
+        <a href="info.html" class="btn-blue">診療案内・外来表</a>
+        <a href="training.html" class="btn-line">研修・入局のご案内</a>
+      </div>
+    </div>
+
+    <!-- お知らせ -->
+    <div id="news-section">
+      <div class="sec-head">
+        <span class="sec-en">News &amp; Topics</span>
+        <h2>お知らせ</h2>
+      </div>
+      <table class="news-table" id="news-list">
+        <tbody>
+          <tr class="news-row">
+            <td class="news-date" data-cms="news_1_date" data-cms-type="line" data-cms-label="日付">2026.02.01</td>
+            <td data-cms="news_1_text" data-cms-type="line" data-cms-label="本文">2026年度 後期研修プログラム・医局説明会の受付を開始しました <span class="badge-new">NEW</span></td>
+            <td class="news-del-cell"><button class="news-del-btn" onclick="deleteNewsRow(this)" title="削除">×</button></td>
+          </tr>
+          <tr class="news-row">
+            <td class="news-date" data-cms="news_2_date" data-cms-type="line" data-cms-label="日付">2025.07.12</td>
+            <td data-cms="news_2_text" data-cms-type="line" data-cms-label="本文">医局説明会を開催します（7月12日 16:30〜18:00、カンファレンス室）</td>
+            <td class="news-del-cell"><button class="news-del-btn" onclick="deleteNewsRow(this)" title="削除">×</button></td>
+          </tr>
+          <tr class="news-row">
+            <td class="news-date" data-cms="news_3_date" data-cms-type="line" data-cms-label="日付">2025.04.01</td>
+            <td data-cms="news_3_text" data-cms-type="line" data-cms-label="本文">スタッフ紹介のページを更新しました</td>
+            <td class="news-del-cell"><button class="news-del-btn" onclick="deleteNewsRow(this)" title="削除">×</button></td>
+          </tr>
+          <tr class="news-row">
+            <td class="news-date" data-cms="news_4_date" data-cms-type="line" data-cms-label="日付">2025.01.10</td>
+            <td data-cms="news_4_text" data-cms-type="line" data-cms-label="本文">研究業績・論文リストを更新しました</td>
+            <td class="news-del-cell"><button class="news-del-btn" onclick="deleteNewsRow(this)" title="削除">×</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="news-add-row"><button class="news-add-btn" onclick="addNewsRow()">＋ お知らせを追加する</button></div>
+      <p class="news-more"><a href="#">お知らせ一覧を見る</a></p>
+    </div>
+
+    <!-- 科の紹介 -->
+    <div id="about-section">
+      <div class="sec-head">
+        <span class="sec-en">About Us</span>
+        <h2>リハビリテーション科について</h2>
+      </div>
+      <p class="about-body" data-cms="about_desc" data-cms-type="text" data-cms-label="科の説明文">リハビリテーション科は、疾病・外傷・手術後などの機能低下に対し、医学的リハビリテーションを提供する診療科です。急性期から回復期・生活期にわたる包括的なリハビリテーションを多職種チームで実践しています。神戸大学病院の高度急性期医療と連携し、脳卒中・神経疾患・整形外科疾患・心大血管・呼吸器疾患など幅広い領域に対応します。</p>
+      <div class="about-links">
+        <a href="greeting.html">▶ 科長挨拶</a>
+        <a href="staff.html">▶ スタッフ紹介</a>
+        <a href="study.html">▶ 研究・業績</a>
+        <a href="info.html">▶ 診療案内</a>
+      </div>
+    </div>
+
+    <!-- 当科の特色 -->
+    <div id="features-section">
+      <div class="sec-head">
+        <span class="sec-en">Our Specialties</span>
+        <h2>当科の特色</h2>
+      </div>
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-num">1</div>
+          <div class="feature-body">
+            <h3 data-cms="feat1_title" data-cms-type="line" data-cms-label="特色1タイトル">神経疾患リハビリテーション</h3>
+            <p data-cms="feat1_desc" data-cms-type="text" data-cms-label="特色1説明">脳卒中・パーキンソン病・脊髄損傷など神経疾患への専門的なリハビリテーション。最新の神経科学に基づいたアプローチで機能回復を目指します。</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">2</div>
+          <div class="feature-body">
+            <h3 data-cms="feat2_title" data-cms-type="line" data-cms-label="特色2タイトル">整形外科・運動器リハビリテーション</h3>
+            <p data-cms="feat2_desc" data-cms-type="text" data-cms-label="特色2説明">骨折・関節疾患・脊椎疾患などの術後リハビリテーション。早期離床・早期機能回復を目標に整形外科と密接に連携します。</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">3</div>
+          <div class="feature-body">
+            <h3 data-cms="feat3_title" data-cms-type="line" data-cms-label="特色3タイトル">心大血管・呼吸器リハビリテーション</h3>
+            <p data-cms="feat3_desc" data-cms-type="text" data-cms-label="特色3説明">心不全・呼吸器疾患など内科系疾患に対するリハビリテーション。運動療法・呼吸訓練を通じた包括的な支援を行います。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- お問い合わせ -->
+    <div id="contact-section">
+      <div class="sec-head">
+        <span class="sec-en">Contact</span>
+        <h2>お問い合わせ</h2>
+      </div>
+      <table class="contact-table">
+        <tr>
+          <th>住所</th>
+          <td data-cms="contact_address" data-cms-type="line" data-cms-label="住所">〒650-0017 神戸市中央区楠町7丁目5番1号</td>
+        </tr>
+        <tr>
+          <th>電話</th>
+          <td><a href="tel:0783826826">078-382-6826</a>（直通）</td>
+        </tr>
+        <tr>
+          <th>メール</th>
+          <td><a href="mailto:okanoy@med.kobe-u.ac.jp">okanoy@med.kobe-u.ac.jp</a></td>
+        </tr>
+      </table>
+    </div>
+
+  </div><!-- /#content -->
+
+  <!-- サイドバー -->
+  <div id="sidebar">
+
+    <div class="sb-block">
+      <div class="sb-title">診療メニュー</div>
+      <nav class="sb-nav">
+        <ul>
+          <li><a href="greeting.html">ご挨拶</a></li>
+          <li><a href="staff.html">スタッフ紹介</a></li>
+          <li><a href="info.html">患者様へのご案内</a></li>
+          <li><a href="info.html">外来のご案内</a></li>
+          <li><a href="study.html">研究と業績</a></li>
+          <li><a href="training.html">研修・入局希望</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="sb-block">
+      <div class="sb-title">お電話でのお問い合わせ</div>
+      <div class="sb-info">
+        <span class="label">代表（直通）</span>
+        <span class="tel" data-cms="sb_tel" data-cms-type="line" data-cms-label="電話番号">078-382-6826</span>
+        <span class="label">受付時間</span><br>
+        <span data-cms="sb_hours" data-cms-type="line" data-cms-label="受付時間">平日 9:00〜17:00</span>
+      </div>
+    </div>
+
+    <div class="sb-block">
+      <div class="sb-title">研修・入局希望の方へ</div>
+      <div class="sb-recruit">
+        <p data-cms="sb_recruit" data-cms-type="text" data-cms-label="入局案内テキスト">後期研修医・入局を希望される方は随時ご相談を受け付けています。大学病院ならではの豊富な症例と研究環境が整っています。</p>
+        <a href="training.html" class="btn-blue" style="display:block;text-align:center;font-size:12px;">詳しくはこちら</a>
+      </div>
+    </div>
+
+    <div class="sb-block">
+      <div class="sb-title">関連リンク</div>
+      <nav class="sb-nav">
+        <ul>
+          <li><a href="https://www.kobe-u.ac.jp/" target="_blank" rel="noopener">神戸大学</a></li>
+          <li><a href="https://www.hosp.kobe-u.ac.jp/" target="_blank" rel="noopener">神戸大学医学部附属病院</a></li>
+        </ul>
+      </nav>
+    </div>
+
+  </div><!-- /#sidebar -->
+</div><!-- /#main-wrap -->
+
+<!-- フッター -->
+<div id="footer">
+  <nav class="footer-nav">
+    <a href="index.html">トップ</a>
+    <a href="greeting.html">ご挨拶</a>
+    <a href="staff.html">スタッフ紹介</a>
+    <a href="info.html">患者様へのご案内</a>
+    <a href="study.html">研究と業績</a>
+    <a href="training.html">研修・入局希望</a>
+  </nav>
+  <p>〒650-0017 神戸市中央区楠町7丁目5番1号　神戸大学医学部附属病院</p>
+  <p>Copyright &copy; 神戸大学医学部附属病院 リハビリテーション科 All Rights Reserved.</p>
+</div>
+
+<script>
+// SPメニュー開閉
+const spBtn = document.getElementById('spMenuBtn');
+const gnav = document.getElementById('gnav');
+spBtn.addEventListener('click', () => {
+  gnav.classList.toggle('open');
+});
+
+// お知らせ 行追加
+let newsCounter = 100;
+function addNewsRow() {
+  const tbody = document.querySelector('#news-list tbody');
+  const id = ++newsCounter;
+  const today = new Date().toLocaleDateString('ja-JP', {year:'numeric',month:'2-digit',day:'2-digit'}).replace(/\//g,'.');
+  const tr = document.createElement('tr');
+  tr.className = 'news-row';
+  tr.innerHTML =
+    '<td class="news-date" data-cms="news_'+id+'_date" data-cms-type="line" data-cms-label="日付" contenteditable="true">'+today+'</td>'
+    + '<td data-cms="news_'+id+'_text" data-cms-type="line" data-cms-label="本文" contenteditable="true">お知らせを入力してください</td>'
+    + '<td class="news-del-cell"><button class="news-del-btn" onclick="deleteNewsRow(this)" title="削除">×</button></td>';
+  tbody.prepend(tr);
+  const textCell = tr.querySelector('[data-cms$="_text"]');
+  textCell.focus();
+  const range = document.createRange();
+  range.selectNodeContents(textCell);
+  window.getSelection().removeAllRanges();
+  window.getSelection().addRange(range);
+  if (window.cmsMarkDirty) window.cmsMarkDirty();
+}
+
+// お知らせ 行削除
+function deleteNewsRow(btn) {
+  if (!confirm('このお知らせを削除しますか？')) return;
+  btn.closest('tr').remove();
+  if (window.cmsMarkDirty) window.cmsMarkDirty();
+}
+</script>
+
+<script src="cms-engine.js"></script>
+</body>
+</html>

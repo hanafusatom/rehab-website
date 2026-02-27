@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ご挨拶 | 神戸大学医学部附属病院 リハビリテーション科</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.greeting-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+.greeting-photo {
+  background: #e8f0fb;
+  border: 1px solid #b0c8e8;
+  border-radius: 4px;
+  aspect-ratio: 3/4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aac5e0;
+  font-size: 4rem;
+}
+.greeting-name-box {
+  background: #f4f8fc;
+  border: 1px solid #dde8f5;
+  border-radius: 3px;
+  padding: 10px 14px;
+  margin-top: 10px;
+  text-align: center;
+}
+.greeting-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a2f6e;
+}
+.greeting-name-sub {
+  font-size: 11px;
+  color: #666;
+  line-height: 1.7;
+  margin-top: 4px;
+}
+.greeting-body h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a2f6e;
+  border-bottom: 2px solid #dde8f5;
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+.greeting-body p {
+  font-size: 13px;
+  line-height: 2.1;
+  color: #444;
+  margin-bottom: 14px;
+}
+.greeting-body p:last-of-type { margin-bottom: 0; }
+.greeting-signature {
+  margin-top: 20px;
+  text-align: right;
+  font-size: 12px;
+  color: #666;
+  border-top: 1px dotted #d0dff0;
+  padding-top: 14px;
+}
+.greeting-signature strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a2f6e;
+  margin-top: 4px;
+}
+@media (max-width: 640px) {
+  .greeting-grid { grid-template-columns: 1fr; }
+  .greeting-photo { aspect-ratio: 2/1; font-size: 3rem; }
+}
+</style>
+</head>
+<body>
+
+<div id="header-top"><div class="inner">神戸大学医学部附属病院</div></div>
+<div id="header-main">
+  <div class="inner">
+    <div class="site-title">
+      <a href="index.html">
+        <span class="univ">神戸大学医学部附属病院</span>
+        <span class="dept">リハビリテーション科</span>
+        <span class="dept-en">Department of Rehabilitation Medicine</span>
+      </a>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="header-logo-mark">♿</div>
+      <button class="sp-menu-btn" id="spMenuBtn" aria-label="メニュー"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</div>
+<div id="gnav">
+  <div class="inner">
+    <ul>
+      <li><a href="index.html">トップ</a></li>
+      <li><a href="greeting.html" class="active">ご挨拶</a></li>
+      <li><a href="staff.html">スタッフ紹介</a></li>
+      <li><a href="info.html">患者様へ</a></li>
+      <li><a href="study.html">研究と業績</a></li>
+      <li><a href="training.html">研修・入局希望</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="page-title-bar">
+  <div class="inner">
+    <span class="page-en">Greeting</span>
+    <h1>ご挨拶</h1>
+  </div>
+</div>
+
+<div id="main-wrap">
+  <div id="content">
+    <div class="content-block">
+      <div class="greeting-grid">
+        <div>
+          <div class="greeting-photo">👨‍⚕️</div>
+          <div class="greeting-name-box">
+            <div class="greeting-name" data-cms="greeting_name" data-cms-type="line" data-cms-label="氏名">○○　○○（仮）</div>
+            <div class="greeting-name-sub" data-cms="greeting_name_sub" data-cms-type="text" data-cms-label="役職">神戸大学医学部附属病院<br>リハビリテーション科 科長<br>教授（仮）</div>
+          </div>
+        </div>
+        <div class="greeting-body">
+          <h2 data-cms="greeting_heading" data-cms-type="line" data-cms-label="ご挨拶見出し">患者さんとともに、回復の道を歩む</h2>
+          <p data-cms="greeting_p1" data-cms-type="text" data-cms-label="本文1段落目">神戸大学医学部附属病院リハビリテーション科のホームページをご覧いただき、誠にありがとうございます。</p>
+          <p data-cms="greeting_p2" data-cms-type="text" data-cms-label="本文2段落目">リハビリテーション医学は、疾患や外傷によって生じた機能障害・能力障害・社会的不利を軽減し、患者さんの生活の質（QOL）を向上させることを目的とした診療分野です。脳血管疾患・整形外科疾患・心大血管疾患・呼吸器疾患など、多岐にわたる疾患の急性期から慢性期まで、一貫したリハビリテーション医療を提供することが私たちの使命です。</p>
+          <p data-cms="greeting_p3" data-cms-type="text" data-cms-label="本文3段落目">神戸大学附属病院という大学病院の強みを生かし、各診療科と緊密に連携しながら、医師・理学療法士・作業療法士・言語聴覚士・看護師・医療ソーシャルワーカーなど多職種が一体となったチームアプローチを実践しています。患者さん一人ひとりの状態と目標に合わせた、個別性の高いリハビリテーションプログラムを立案・実施することを大切にしています。</p>
+          <p data-cms="greeting_p4" data-cms-type="text" data-cms-label="本文4段落目">また、大学病院の使命として、臨床研究・教育にも積極的に取り組んでいます。日々の診療から生まれる疑問を科学的に検証し、その成果をまた臨床へと還元することで、リハビリテーション医療の質の向上に貢献したいと考えています。研修医・専攻医の教育にも力を入れており、次世代のリハビリテーション科専門医を育てることも重要な責務と捉えています。</p>
+          <p data-cms="greeting_p5" data-cms-type="text" data-cms-label="本文5段落目">患者さんとご家族の方々、地域の医療・福祉関係者の皆様と手を取り合いながら、一人でも多くの方が充実した生活を取り戻せるよう、スタッフ一同、誠心誠意尽くしてまいります。どうぞよろしくお願いいたします。</p>
+          <div class="greeting-signature" data-cms="greeting_signature" data-cms-type="text" data-cms-label="署名">
+            神戸大学医学部附属病院 リハビリテーション科<br>
+            <strong>科長　○○　○○（氏名を入力）</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="sidebar">
+    <div class="sb-block">
+      <div class="sb-title">メニュー</div>
+      <nav class="sb-nav">
+        <ul>
+          <li><a href="greeting.html" class="active">ご挨拶</a></li>
+          <li><a href="staff.html">スタッフ紹介</a></li>
+          <li><a href="info.html">患者様へのご案内</a></li>
+          <li><a href="study.html">研究と業績</a></li>
+          <li><a href="training.html">研修・入局希望</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="sb-block">
+      <div class="sb-title">お問い合わせ</div>
+      <div class="sb-info">
+        <span class="label">代表（直通）</span>
+        <span class="tel">078-382-6826</span>
+        <span class="label">受付時間</span><br>
+        平日 9:00〜17:00
+      </div>
+    </div>
+    <div class="sb-block">
+      <div class="sb-title">研修・入局希望</div>
+      <div class="sb-recruit">
+        <p>後期研修医・入局を希望される方はお気軽にご連絡ください。</p>
+        <a href="training.html" class="btn-blue" style="display:block;text-align:center;font-size:12px;">詳しくはこちら</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="footer">
+  <nav class="footer-nav">
+    <a href="index.html">トップ</a>
+    <a href="greeting.html">ご挨拶</a>
+    <a href="staff.html">スタッフ紹介</a>
+    <a href="info.html">患者様へのご案内</a>
+    <a href="study.html">研究と業績</a>
+    <a href="training.html">研修・入局希望</a>
+  </nav>
+  <p>〒650-0017 神戸市中央区楠町7丁目5番1号　神戸大学医学部附属病院</p>
+  <p>Copyright &copy; 神戸大学医学部附属病院 リハビリテーション科 All Rights Reserved.</p>
+</div>
+
+<script>
+const spBtn = document.getElementById('spMenuBtn');
+const gnav = document.getElementById('gnav');
+spBtn.addEventListener('click', () => { gnav.classList.toggle('open'); });
+</script>
+<script src="cms-engine.js"></script>
+</body>
+</html>

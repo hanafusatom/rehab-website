@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>研究と業績 | 神戸大学医学部附属病院 リハビリテーション科</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* 研究テーマカード */
+.research-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+.research-card {
+  background: #f8fafd; border: 1px solid #dde8f5; border-radius: 3px;
+  padding: 14px 16px; transition: border-color 0.2s;
+}
+.research-card:hover { border-color: #1a5fa8; }
+.research-icon { font-size: 1.4rem; margin-bottom: 8px; display: block; }
+.research-title { font-size: 13px; font-weight: 700; color: #1a2f6e; margin-bottom: 6px; }
+.research-desc { font-size: 12px; line-height: 1.85; color: #555; }
+
+/* 論文リスト */
+.year-group { margin-bottom: 20px; }
+.year-group:last-child { margin-bottom: 0; }
+.year-label {
+  font-size: 15px; font-weight: 700; color: #1a2f6e;
+  display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+}
+.year-label::after { content: ''; flex: 1; height: 1px; background: #dde8f5; }
+.pub-item {
+  background: #fff; border: 1px solid #dde8f5; border-radius: 3px;
+  padding: 10px 14px; margin-bottom: 8px; font-size: 12px; line-height: 1.8;
+  transition: border-color 0.2s;
+}
+.pub-item:last-child { margin-bottom: 0; }
+.pub-item:hover { border-color: #1a5fa8; }
+.pub-authors { color: #555; font-weight: 500; margin-bottom: 2px; }
+.pub-title { color: #1a2f6e; font-weight: 700; margin-bottom: 3px; }
+.pub-journal { color: #777; font-style: italic; }
+.pub-tag {
+  display: inline-block; background: #e8f0fb; color: #1a5fa8;
+  font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 3px;
+  margin-right: 4px; font-style: normal;
+}
+.pub-sample-note { font-size: 11px; color: #999; margin-bottom: 16px; }
+
+@media (max-width: 600px) {
+  .research-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="header-top"><div class="inner">神戸大学医学部附属病院</div></div>
+<div id="header-main">
+  <div class="inner">
+    <div class="site-title">
+      <a href="index.html">
+        <span class="univ">神戸大学医学部附属病院</span>
+        <span class="dept">リハビリテーション科</span>
+        <span class="dept-en">Department of Rehabilitation Medicine</span>
+      </a>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="header-logo-mark">♿</div>
+      <button class="sp-menu-btn" id="spMenuBtn" aria-label="メニュー"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</div>
+<div id="gnav">
+  <div class="inner">
+    <ul>
+      <li><a href="index.html">トップ</a></li>
+      <li><a href="greeting.html">ご挨拶</a></li>
+      <li><a href="staff.html">スタッフ紹介</a></li>
+      <li><a href="info.html">患者様へ</a></li>
+      <li><a href="study.html" class="active">研究と業績</a></li>
+      <li><a href="training.html">研修・入局希望</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="page-title-bar">
+  <div class="inner">
+    <span class="page-en">Research &amp; Publications</span>
+    <h1>研究と業績</h1>
+  </div>
+</div>
+
+<div id="main-wrap">
+  <div id="content">
+
+    <div class="content-block">
+      <div class="block-head">
+        <span class="block-en">Research Themes</span>
+        <h2>主な研究テーマ</h2>
+      </div>
+      <div class="research-grid">
+        <div class="research-card">
+          <span class="research-icon">🧠</span>
+          <div class="research-title" data-cms="res1_title" data-cms-type="line" data-cms-label="研究テーマ1タイトル">脳卒中後リハビリテーションの最適化</div>
+          <p class="research-desc" data-cms="res1_desc" data-cms-type="text" data-cms-label="研究テーマ1説明">脳卒中後の運動機能・認知機能回復に関する臨床研究。ロボット療法・経頭蓋磁気刺激（TMS）を用いた新しいアプローチの探索。</p>
+        </div>
+        <div class="research-card">
+          <span class="research-icon">❤️</span>
+          <div class="research-title" data-cms="res2_title" data-cms-type="line" data-cms-label="研究テーマ2タイトル">心大血管疾患リハビリテーション</div>
+          <p class="research-desc" data-cms="res2_desc" data-cms-type="text" data-cms-label="研究テーマ2説明">心不全患者における運動療法の効果と安全性に関する研究。運動処方の個別化とQOL向上を目指した介入研究。</p>
+        </div>
+        <div class="research-card">
+          <span class="research-icon">🦴</span>
+          <div class="research-title" data-cms="res3_title" data-cms-type="line" data-cms-label="研究テーマ3タイトル">廃用症候群・サルコペニア研究</div>
+          <p class="research-desc" data-cms="res3_desc" data-cms-type="text" data-cms-label="研究テーマ3説明">入院患者の廃用症候群予防に関する研究。骨格筋量・筋力評価ツールの開発と早期リハビリ介入の効果検証。</p>
+        </div>
+        <div class="research-card">
+          <span class="research-icon">🍽️</span>
+          <div class="research-title" data-cms="res4_title" data-cms-type="line" data-cms-label="研究テーマ4タイトル">嚥下機能評価・嚥下リハビリ</div>
+          <p class="research-desc" data-cms="res4_desc" data-cms-type="text" data-cms-label="研究テーマ4説明">嚥下造影・嚥下内視鏡を用いた機能評価法の標準化と、VF/VE検査に基づく嚥下リハビリプログラムの確立。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-head">
+        <span class="block-en">Publications</span>
+        <h2>主な論文業績（抜粋）</h2>
+      </div>
+      <p class="pub-sample-note">※ 以下はサンプルです。実際の業績をご入力ください。</p>
+      <div class="year-group">
+        <div class="year-label">2025</div>
+        <div class="pub-item">
+          <div class="pub-authors" data-cms="pub1_authors" data-cms-type="line" data-cms-label="著者（2025-1）">著者名1, 著者名2, 著者名3</div>
+          <div class="pub-title" data-cms="pub1_title" data-cms-type="line" data-cms-label="論文タイトル（2025-1）">論文タイトルを入力してください。英文・和文どちらでも対応しています。</div>
+          <div class="pub-journal"><span class="pub-tag">Original</span><span data-cms="pub1_journal" data-cms-type="line" data-cms-label="掲載誌（2025-1）">Journal Name. 2025; Vol(No): page-page.</span></div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-authors" data-cms="pub2_authors" data-cms-type="line" data-cms-label="著者（2025-2）">著者名1, 著者名2</div>
+          <div class="pub-title" data-cms="pub2_title" data-cms-type="line" data-cms-label="論文タイトル（2025-2）">論文タイトルを入力してください（例：脳卒中患者における運動機能回復に関する前向き研究）</div>
+          <div class="pub-journal"><span class="pub-tag">Review</span><span data-cms="pub2_journal" data-cms-type="line" data-cms-label="掲載誌（2025-2）">Journal Name. 2025; Vol(No): page-page.</span></div>
+        </div>
+      </div>
+      <div class="year-group">
+        <div class="year-label">2024</div>
+        <div class="pub-item">
+          <div class="pub-authors" data-cms="pub3_authors" data-cms-type="line" data-cms-label="著者（2024-1）">著者名1, 著者名2, 著者名3</div>
+          <div class="pub-title" data-cms="pub3_title" data-cms-type="line" data-cms-label="論文タイトル（2024-1）">論文タイトルを入力してください。</div>
+          <div class="pub-journal"><span class="pub-tag">Original</span><span data-cms="pub3_journal" data-cms-type="line" data-cms-label="掲載誌（2024-1）">Journal Name. 2024; Vol(No): page-page.</span></div>
+        </div>
+      </div>
+      <div class="year-group">
+        <div class="year-label">2023</div>
+        <div class="pub-item">
+          <div class="pub-authors" data-cms="pub4_authors" data-cms-type="line" data-cms-label="著者（2023-1）">著者名1, 著者名2</div>
+          <div class="pub-title" data-cms="pub4_title" data-cms-type="line" data-cms-label="論文タイトル（2023-1）">論文タイトルを入力してください。</div>
+          <div class="pub-journal"><span class="pub-tag">Case Report</span><span data-cms="pub4_journal" data-cms-type="line" data-cms-label="掲載誌（2023-1）">Journal Name. 2023; Vol(No): page-page.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-head">
+        <span class="block-en">Awards &amp; Presentations</span>
+        <h2>学会発表・受賞歴</h2>
+      </div>
+      <div class="pub-item">
+        <div class="pub-title" data-cms="award1_title" data-cms-type="line" data-cms-label="受賞1タイトル">○○先生が第●回日本リハビリテーション医学会でXXX賞を受賞しました（2024年）</div>
+        <div class="pub-journal" data-cms="award1_desc" data-cms-type="line" data-cms-label="受賞1詳細">学会名・受賞内容を入力してください。</div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-title" data-cms="award2_title" data-cms-type="line" data-cms-label="発表1タイトル">第●回日本リハビリテーション医学会学術集会にて発表（2024年）</div>
+        <div class="pub-journal" data-cms="award2_desc" data-cms-type="line" data-cms-label="発表1詳細">発表タイトル・演者名を入力してください。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="sidebar">
+    <div class="sb-block">
+      <div class="sb-title">メニュー</div>
+      <nav class="sb-nav">
+        <ul>
+          <li><a href="greeting.html">ご挨拶</a></li>
+          <li><a href="staff.html">スタッフ紹介</a></li>
+          <li><a href="info.html">患者様へのご案内</a></li>
+          <li><a href="study.html" class="active">研究と業績</a></li>
+          <li><a href="training.html">研修・入局希望</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="sb-block">
+      <div class="sb-title">お問い合わせ</div>
+      <div class="sb-info">
+        <span class="label">代表（直通）</span>
+        <span class="tel">078-382-6826</span>
+        <span class="label">受付時間</span><br>
+        平日 9:00〜17:00
+      </div>
+    </div>
+    <div class="sb-block">
+      <div class="sb-title">研修・入局希望</div>
+      <div class="sb-recruit">
+        <p>後期研修医・入局を希望される方はお気軽にご連絡ください。</p>
+        <a href="training.html" class="btn-blue" style="display:block;text-align:center;font-size:12px;">詳しくはこちら</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="footer">
+  <nav class="footer-nav">
+    <a href="index.html">トップ</a>
+    <a href="greeting.html">ご挨拶</a>
+    <a href="staff.html">スタッフ紹介</a>
+    <a href="info.html">患者様へのご案内</a>
+    <a href="study.html">研究と業績</a>
+    <a href="training.html">研修・入局希望</a>
+  </nav>
+  <p>〒650-0017 神戸市中央区楠町7丁目5番1号　神戸大学医学部附属病院</p>
+  <p>Copyright &copy; 神戸大学医学部附属病院 リハビリテーション科 All Rights Reserved.</p>
+</div>
+
+<script>
+const spBtn = document.getElementById('spMenuBtn');
+const gnav = document.getElementById('gnav');
+spBtn.addEventListener('click', () => { gnav.classList.toggle('open'); });
+</script>
+<script src="cms-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スタッフ紹介 | 神戸大学医学部附属病院 リハビリテーション科</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.staff-group { margin-bottom: 22px; }
+.staff-group:last-child { margin-bottom: 0; }
+.group-label {
+  font-size: 13px; font-weight: 700; color: #1a2f6e;
+  border-left: 3px solid #1a5fa8; padding-left: 8px;
+  margin-bottom: 12px;
+}
+.staff-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+.staff-card {
+  background: #f8fafd; border: 1px solid #dde8f5; border-radius: 4px;
+  padding: 16px 12px; text-align: center; transition: all 0.2s;
+}
+.staff-card:hover { border-color: #1a5fa8; background: #fff; box-shadow: 0 3px 12px rgba(26,95,168,0.1); }
+.staff-avatar {
+  width: 64px; height: 64px;
+  background: #dde8f5; border-radius: 50%;
+  margin: 0 auto 10px; display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; color: #7da8d4;
+}
+.staff-name { font-size: 13px; font-weight: 700; color: #1a2f6e; margin-bottom: 2px; }
+.staff-name-en { font-size: 11px; color: #888; margin-bottom: 6px; }
+.staff-role {
+  display: inline-block; background: #e8f0fb; color: #1a5fa8;
+  font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 20px; margin-bottom: 6px;
+}
+.staff-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 3px; }
+.staff-tag {
+  background: #fff; border: 1px solid #d0dff0; color: #666;
+  font-size: 10px; padding: 1px 6px; border-radius: 3px;
+}
+@media (max-width: 480px) {
+  .staff-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="header-top"><div class="inner">神戸大学医学部附属病院</div></div>
+<div id="header-main">
+  <div class="inner">
+    <div class="site-title">
+      <a href="index.html">
+        <span class="univ">神戸大学医学部附属病院</span>
+        <span class="dept">リハビリテーション科</span>
+        <span class="dept-en">Department of Rehabilitation Medicine</span>
+      </a>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="header-logo-mark">♿</div>
+      <button class="sp-menu-btn" id="spMenuBtn" aria-label="メニュー"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</div>
+<div id="gnav">
+  <div class="inner">
+    <ul>
+      <li><a href="index.html">トップ</a></li>
+      <li><a href="greeting.html">ご挨拶</a></li>
+      <li><a href="staff.html" class="active">スタッフ紹介</a></li>
+      <li><a href="info.html">患者様へ</a></li>
+      <li><a href="study.html">研究と業績</a></li>
+      <li><a href="training.html">研修・入局希望</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="page-title-bar">
+  <div class="inner">
+    <span class="page-en">Our Team</span>
+    <h1>スタッフ紹介</h1>
+  </div>
+</div>
+
+<div id="main-wrap">
+  <div id="content">
+
+    <div class="content-block">
+      <div class="block-head">
+        <span class="block-en">Medical Doctors</span>
+        <h2>医師スタッフ</h2>
+      </div>
+      <div class="staff-group">
+        <div class="staff-grid">
+          <div class="staff-card">
+            <div class="staff-avatar">👤</div>
+            <div class="staff-name" data-cms="staff1_name" data-cms-type="line" data-cms-label="氏名1">○○　○○（仮）</div>
+            <div class="staff-name-en" data-cms="staff1_en" data-cms-type="line" data-cms-label="氏名ローマ字1">Name (Romaji)</div>
+            <div class="staff-role" data-cms="staff1_role" data-cms-type="line" data-cms-label="役職1">科長・教授</div>
+            <div class="staff-tags">
+              <span class="staff-tag">脳卒中リハビリ</span>
+              <span class="staff-tag">神経疾患</span>
+            </div>
+          </div>
+          <div class="staff-card">
+            <div class="staff-avatar">👤</div>
+            <div class="staff-name" data-cms="staff2_name" data-cms-type="line" data-cms-label="氏名2">○○　○○（仮）</div>
+            <div class="staff-name-en" data-cms="staff2_en" data-cms-type="line" data-cms-label="氏名ローマ字2">Name (Romaji)</div>
+            <div class="staff-role" data-cms="staff2_role" data-cms-type="line" data-cms-label="役職2">准教授</div>
+            <div class="staff-tags">
+              <span class="staff-tag">整形外科リハビリ</span>
+              <span class="staff-tag">運動器</span>
+            </div>
+          </div>
+          <div class="staff-card">
+            <div class="staff-avatar">👤</div>
+            <div class="staff-name" data-cms="staff3_name" data-cms-type="line" data-cms-label="氏名3">○○　○○（仮）</div>
+            <div class="staff-name-en" data-cms="staff3_en" data-cms-type="line" data-cms-label="氏名ローマ字3">Name (Romaji)</div>
+            <div class="staff-role" data-cms="staff3_role" data-cms-type="line" data-cms-label="役職3">助教</div>
+            <div class="staff-tags">
+              <span class="staff-tag">心大血管リハビリ</span>
+              <span class="staff-tag">呼吸器</span>
+            </div>
+          </div>
+          <div class="staff-card">
+            <div class="staff-avatar">👤</div>
+            <div class="staff-name" data-cms="staff4_name" data-cms-type="line" data-cms-label="氏名4">○○　○○（仮）</div>
+            <div class="staff-name-en" data-cms="staff4_en" data-cms-type="line" data-cms-label="氏名ローマ字4">Name (Romaji)</div>
+            <div class="staff-role" data-cms="staff4_role" data-cms-type="line" data-cms-label="役職4">医員・専攻医</div>
+            <div class="staff-tags">
+              <span class="staff-tag">後期研修中</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-head">
+        <span class="block-en">Co-Medical Staff</span>
+        <h2>コメディカルスタッフ</h2>
+      </div>
+      <div class="staff-grid">
+        <div class="staff-card">
+          <div class="staff-avatar">🏃</div>
+          <div class="staff-name">理学療法士（PT）</div>
+          <div class="staff-name-en">Physical Therapist</div>
+          <div class="staff-role">PTチーフ 他</div>
+          <div class="staff-tags"><span class="staff-tag">運動療法</span><span class="staff-tag">義肢装具</span></div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-avatar">🖐️</div>
+          <div class="staff-name">作業療法士（OT）</div>
+          <div class="staff-name-en">Occupational Therapist</div>
+          <div class="staff-role">OTチーフ 他</div>
+          <div class="staff-tags"><span class="staff-tag">ADL訓練</span><span class="staff-tag">高次脳機能</span></div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-avatar">🗣️</div>
+          <div class="staff-name">言語聴覚士（ST）</div>
+          <div class="staff-name-en">Speech Therapist</div>
+          <div class="staff-role">STチーフ 他</div>
+          <div class="staff-tags"><span class="staff-tag">嚥下リハビリ</span><span class="staff-tag">失語症</span></div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-avatar">📋</div>
+          <div class="staff-name">医療ソーシャルワーカー</div>
+          <div class="staff-name-en">Medical Social Worker</div>
+          <div class="staff-role">MSW</div>
+          <div class="staff-tags"><span class="staff-tag">退院支援</span><span class="staff-tag">社会復帰</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-head">
+        <span class="block-en">Graduate Students</span>
+        <h2>大学院生・研究員</h2>
+      </div>
+      <div class="staff-grid">
+        <div class="staff-card">
+          <div class="staff-avatar">🎓</div>
+          <div class="staff-name" data-cms="grad1_name" data-cms-type="line" data-cms-label="院生氏名1">大学院生（仮）</div>
+          <div class="staff-name-en">Graduate Student</div>
+          <div class="staff-role">博士課程</div>
+          <div class="staff-tags"><span class="staff-tag" data-cms="grad1_research" data-cms-type="line" data-cms-label="研究テーマ1">研究テーマを入力</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="sidebar">
+    <div class="sb-block">
+      <div class="sb-title">メニュー</div>
+      <nav class="sb-nav">
+        <ul>
+          <li><a href="greeting.html">ご挨拶</a></li>
+          <li><a href="staff.html" class="active">スタッフ紹介</a></li>
+          <li><a href="info.html">患者様へのご案内</a></li>
+          <li><a href="study.html">研究と業績</a></li>
+          <li><a href="training.html">研修・入局希望</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="sb-block">
+      <div class="sb-title">お問い合わせ</div>
+      <div class="sb-info">
+        <span class="label">代表（直通）</span>
+        <span class="tel">078-382-6826</span>
+        <span class="label">受付時間</span><br>
+        平日 9:00〜17:00
+      </div>
+    </div>
+    <div class="sb-block">
+      <div class="sb-title">研修・入局希望</div>
+      <div class="sb-recruit">
+        <p>後期研修医・入局を希望される方はお気軽にご連絡ください。</p>
+        <a href="training.html" class="btn-blue" style="display:block;text-align:center;font-size:12px;">詳しくはこちら</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="footer">
+  <nav class="footer-nav">
+    <a href="index.html">トップ</a>
+    <a href="greeting.html">ご挨拶</a>
+    <a href="staff.html">スタッフ紹介</a>
+    <a href="info.html">患者様へのご案内</a>
+    <a href="study.html">研究と業績</a>
+    <a href="training.html">研修・入局希望</a>
+  </nav>
+  <p>〒650-0017 神戸市中央区楠町7丁目5番1号　神戸大学医学部附属病院</p>
+  <p>Copyright &copy; 神戸大学医学部附属病院 リハビリテーション科 All Rights Reserved.</p>
+</div>
+
+<script>
+const spBtn = document.getElementById('spMenuBtn');
+const gnav = document.getElementById('gnav');
+spBtn.addEventListener('click', () => { gnav.classList.toggle('open'); });
+</script>
+<script src="cms-engine.js"></script>
+</body>
+</html>
