@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>患者様へのご案内 | 神戸大学医学部附属病院 リハビリテーション科</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
 /* 外来表 */
@@ -69,17 +69,15 @@
 <div id="header-top"><div class="inner">神戸大学医学部附属病院</div></div>
 <div id="header-main">
   <div class="inner">
-    <div class="site-title">
-      <a href="index.html">
+    <a href="index.html" style="display:flex;align-items:center;gap:14px;text-decoration:none;">
+      <img src="images/kobe-mark.svg" alt="神戸大学" class="header-logo-mark">
+      <div class="site-title">
         <span class="univ">神戸大学医学部附属病院</span>
         <span class="dept">リハビリテーション科</span>
         <span class="dept-en">Department of Rehabilitation Medicine</span>
-      </a>
-    </div>
-    <div style="display:flex;align-items:center;gap:12px;">
-      <div class="header-logo-mark">♿</div>
-      <button class="sp-menu-btn" id="spMenuBtn" aria-label="メニュー"><span></span><span></span><span></span></button>
-    </div>
+      </div>
+    </a>
+    <button class="sp-menu-btn" id="spMenuBtn" aria-label="メニュー"><span></span><span></span><span></span></button>
   </div>
 </div>
 <div id="gnav">
@@ -90,7 +88,8 @@
       <li><a href="staff.html">スタッフ紹介</a></li>
       <li><a href="info.html" class="active">患者様へ</a></li>
       <li><a href="study.html">研究と業績</a></li>
-      <li><a href="training.html">研修・入局希望</a></li>
+      <li><a href="training.html">臨床研修を希望される方へ</a></li>
+      <li><a href="https://www.med.kobe-u.ac.jp/rehab/co2therapy/index.html" class="nav-special" target="_blank" rel="noopener">炭酸ガス経皮吸収療法</a></li>
     </ul>
   </div>
 </div>
@@ -104,43 +103,6 @@
 
 <div id="main-wrap">
   <div id="content">
-
-    <div class="content-block">
-      <div class="block-head">
-        <span class="block-en">Outpatient Schedule</span>
-        <h2>外来担当表</h2>
-      </div>
-      <p class="scroll-hint">← 横にスクロールできます</p>
-      <div class="table-wrap">
-        <table class="schedule-table">
-          <thead>
-            <tr>
-              <th>診察</th>
-              <th>月曜日</th><th>火曜日</th><th>水曜日</th><th>木曜日</th><th>金曜日</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>午前</td>
-              <td><span class="doctor-name" data-cms="sched_mon_am" data-cms-type="line" data-cms-label="月・午前">○○先生（仮）</span></td>
-              <td><span class="doctor-name" data-cms="sched_tue_am" data-cms-type="line" data-cms-label="火・午前">○○先生（仮）</span></td>
-              <td><span class="doctor-name" data-cms="sched_wed_am" data-cms-type="line" data-cms-label="水・午前">○○先生（仮）</span></td>
-              <td><span class="doctor-name" data-cms="sched_thu_am" data-cms-type="line" data-cms-label="木・午前">○○先生（仮）</span></td>
-              <td><span class="doctor-name" data-cms="sched_fri_am" data-cms-type="line" data-cms-label="金・午前">○○先生（仮）</span></td>
-            </tr>
-            <tr>
-              <td>午後</td>
-              <td data-cms="sched_mon_pm" data-cms-type="line" data-cms-label="月・午後">—</td>
-              <td><span class="doctor-name" data-cms="sched_tue_pm" data-cms-type="line" data-cms-label="火・午後">○○先生（仮）</span></td>
-              <td data-cms="sched_wed_pm" data-cms-type="line" data-cms-label="水・午後">—</td>
-              <td><span class="doctor-name" data-cms="sched_thu_pm" data-cms-type="line" data-cms-label="木・午後">○○先生（仮）</span></td>
-              <td data-cms="sched_fri_pm" data-cms-type="line" data-cms-label="金・午後">—</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="table-note" data-cms="sched_note" data-cms-type="line" data-cms-label="外来表注記">※担当医は変更となる場合があります。詳細はお問い合わせください。</p>
-    </div>
 
     <div class="content-block">
       <div class="block-head">
@@ -199,11 +161,11 @@
         </div>
         <div class="access-item">
           <h4>📞 お問い合わせ</h4>
-          <p>TEL: <a href="tel:0783825111">078-382-5111</a>（代表）<br>直通: <a href="tel:0783826826">078-382-6826</a><br>平日 9:00〜17:00 受付</p>
+          <p data-cms="access_tel" data-cms-type="text" data-cms-label="お問い合わせ電話">TEL: <a href="tel:0783825111">078-382-5111</a>（代表）<br>直通: <a href="tel:0783826826">078-382-6826</a><br>平日 9:00〜17:00 受付</p>
         </div>
         <div class="access-item">
           <h4>✉️ メール</h4>
-          <p><a href="mailto:okanoy@med.kobe-u.ac.jp">okanoy@med.kobe-u.ac.jp</a><br><br>お急ぎの場合はお電話でお問い合わせください。</p>
+          <p data-cms="access_email" data-cms-type="text" data-cms-label="メールアドレス"><a href="mailto:okanoy@med.kobe-u.ac.jp">okanoy@med.kobe-u.ac.jp</a><br><br>お急ぎの場合はお電話でお問い合わせください。</p>
         </div>
       </div>
     </div>
@@ -219,7 +181,7 @@
           <li><a href="staff.html">スタッフ紹介</a></li>
           <li><a href="info.html" class="active">患者様へのご案内</a></li>
           <li><a href="study.html">研究と業績</a></li>
-          <li><a href="training.html">研修・入局希望</a></li>
+          <li><a href="training.html">臨床研修を希望される方へ</a></li>
         </ul>
       </nav>
     </div>
@@ -227,13 +189,13 @@
       <div class="sb-title">お問い合わせ</div>
       <div class="sb-info">
         <span class="label">代表（直通）</span>
-        <span class="tel">078-382-6826</span>
+        <span class="tel" data-cms="sb_tel" data-cms-type="line" data-cms-label="電話番号">078-382-6826</span>
         <span class="label">受付時間</span><br>
-        平日 9:00〜17:00
+        <span data-cms="sb_hours" data-cms-type="line" data-cms-label="受付時間">平日 9:00〜17:00</span>
       </div>
     </div>
     <div class="sb-block">
-      <div class="sb-title">研修・入局希望</div>
+      <div class="sb-title">臨床研修を希望される方へ</div>
       <div class="sb-recruit">
         <p>後期研修医・入局を希望される方はお気軽にご連絡ください。</p>
         <a href="training.html" class="btn-blue" style="display:block;text-align:center;font-size:12px;">詳しくはこちら</a>
@@ -249,7 +211,7 @@
     <a href="staff.html">スタッフ紹介</a>
     <a href="info.html">患者様へのご案内</a>
     <a href="study.html">研究と業績</a>
-    <a href="training.html">研修・入局希望</a>
+    <a href="training.html">臨床研修を希望される方へ</a>
   </nav>
   <p>〒650-0017 神戸市中央区楠町7丁目5番1号　神戸大学医学部附属病院</p>
   <p>Copyright &copy; 神戸大学医学部附属病院 リハビリテーション科 All Rights Reserved.</p>

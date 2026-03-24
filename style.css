@@ -41,16 +41,26 @@ img { max-width: 100%; height: auto; }
   align-items: center;
   justify-content: space-between;
 }
-.site-title { line-height: 1.4; }
+.site-title {
+  line-height: 1.4;
+  font-family: 'Shippori Mincho', '筑紫明朝', serif;
+}
 .site-title a { text-decoration: none; }
-.site-title .univ { font-size: 11px; color: #666; display: block; }
-.site-title .dept { font-size: 18px; font-weight: 700; color: #1a2f6e; display: block; letter-spacing: 0.04em; }
-.site-title .dept-en { font-size: 11px; color: #888; display: block; letter-spacing: 0.06em; }
+.site-title .univ {
+  font-size: 22px; font-weight: 600; color: #1a2f6e;
+  display: block; letter-spacing: 0.08em;
+}
+.site-title .dept {
+  font-size: 22px; font-weight: 700; color: #1a2f6e;
+  display: block; letter-spacing: 0.08em;
+}
+.site-title .dept-en {
+  font-size: 13px; font-weight: 500; color: #888;
+  display: block; letter-spacing: 0.08em;
+}
 .header-logo-mark {
-  width: 60px; height: 60px;
-  background: #1a5fa8; border-radius: 4px;
-  display: flex; align-items: center; justify-content: center;
-  color: #fff; font-size: 28px; flex-shrink: 0;
+  width: 70px; height: 70px;
+  flex-shrink: 0;
 }
 
 /* === グローバルナビ === */
@@ -64,6 +74,8 @@ img { max-width: 100%; height: auto; }
 }
 #gnav ul li:first-child a { border-left: 1px solid rgba(255,255,255,0.2); }
 #gnav ul li a:hover, #gnav ul li a.active { background: rgba(255,255,255,0.2); text-decoration: none; }
+#gnav ul li a.nav-special { background: #e8553d; color: #fff; font-weight: 700; }
+#gnav ul li a.nav-special:hover { background: #d04530; }
 
 /* === SPメニューボタン === */
 .sp-menu-btn {

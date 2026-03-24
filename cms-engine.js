@@ -32,21 +32,36 @@
   let savedData  = {};
 
   // ── 初期化 ────────────────────────────────────────
-  function init() {
+  async function init() {
     const params = new URLSearchParams(location.search);
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      try { savedData = JSON.parse(stored); } catch(e) {}
+
+    // サーバーの cms-data.json を優先して読み込む（全員に同じ内容を表示）
+    let loadedFromServer = false;
+    try {
+      const res = await fetch('cms-data.json?_=' + Date.now());
+      if (res.ok) {
+        const serverData = await res.json();
+        Object.entries(serverData).forEach(([k, v]) => {
+          if (!k.startsWith('_')) savedData[k] = v;
+        });
+        loadedFromServer = true;
+      }
+    } catch(e) { /* サーバーから読めない場合はlocalStorageにフォールバック */ }
+
+    if (!loadedFromServer) {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        try { savedData = JSON.parse(stored); } catch(e) {}
+      }
     }
 
     // 保存データをページに反映
     applyStoredData();
 
     // 編集モード起動判定（認証チェック付き）
+    // URLに ?edit=1 を付けた場合のみ編集モードを起動
     if (params.get(EDIT_PARAM) === '1') {
       requireAuth().then(ok => { if (ok) enableEditMode(); });
-    } else {
-      injectToggleButton();
     }
   }
 
@@ -57,6 +72,26 @@
       if (!el) return;
       if (el.tagName === 'IMG') {
         el.src = value;
+        // onerrorで非表示にされた画像を再表示
+        el.style.display = 'block';
+        const placeholder = el.nextElementSibling;
+        if (placeholder && (placeholder.classList.contains('placeholder') || placeholder.classList.contains('placeholder-icon'))) {
+          placeholder.style.display = 'none';
+        }
+      } else if (el.tagName === 'CANVAS' && el.dataset.cmsType === 'resident-name') {
+        // 医員名：data-name属性を更新してcanvasを再描画
+        const card = el.closest('.staff-card-compact');
+        if (card) {
+          card.setAttribute('data-name', value);
+          if (typeof renderNameCanvas === 'function') {
+            const doRender = () => renderNameCanvas(el, value);
+            if (document.fonts && document.fonts.ready) {
+              document.fonts.ready.then(doRender);
+            } else {
+              setTimeout(doRender, 100);
+            }
+          }
+        }
       } else {
         el.innerHTML = value;
       }
@@ -82,7 +117,6 @@
     });
     const toolbar = document.getElementById('cms-toolbar');
     if (toolbar) toolbar.remove();
-    injectToggleButton();
   }
 
   // ── ツールバー注入 ────────────────────────────────
@@ -178,6 +212,11 @@
         return;
       }
 
+      if (type === 'resident-name') {
+        makeResidentNameEditable(el, key);
+        return;
+      }
+
       el.setAttribute('contenteditable', 'true');
       el.setAttribute('spellcheck', 'false');
 
@@ -212,25 +251,83 @@
     });
   }
 
+  // ── 医員名編集（canvas要素をクリックで編集） ────
+  function makeResidentNameEditable(el, key) {
+    el.style.cursor = 'pointer';
+    el.title = 'クリックして氏名を変更';
+    el.addEventListener('click', () => {
+      const card = el.closest('.staff-card-compact');
+      const currentName = card ? card.getAttribute('data-name') : '';
+      const newName = prompt('医員の氏名を入力してください：', currentName);
+      if (newName === null || newName === currentName) return;
+      if (card) card.setAttribute('data-name', newName);
+      if (typeof renderNameCanvas === 'function') {
+        const doRender = () => renderNameCanvas(el, newName);
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(doRender);
+        } else {
+          setTimeout(doRender, 100);
+        }
+      }
+      savedData[key] = newName;
+      markDirty();
+    });
+  }
+
+  // ── 画像圧縮 ─────────────────────────────────────
+  function compressImage(file, maxWidth, quality) {
+    maxWidth = maxWidth || 800;
+    quality  = quality  || 0.8;
+    return new Promise(resolve => {
+      const reader = new FileReader();
+      reader.onload = ev => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          let w = img.width, h = img.height;
+          if (w > maxWidth) { h = Math.round(h * maxWidth / w); w = maxWidth; }
+          canvas.width = w; canvas.height = h;
+          canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+          resolve(canvas.toDataURL('image/jpeg', quality));
+        };
+        img.src = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
   // ── 画像編集 ─────────────────────────────────────
   function makeImageEditable(el, key) {
     el.style.cursor = 'pointer';
     el.title = 'クリックして画像を変更';
-    el.addEventListener('click', () => {
+    // ページに既存の file input がある場合はそちらに任せ、CMSは監視のみ
+    const parentContainer = el.closest('.greeting-photo, .staff-photo, .voice-avatar, .photo-container');
+    const existingInput = parentContainer && parentContainer.querySelector('input[type="file"]');
+    if (existingInput) {
+      // 既存inputの変更を監視してsavedDataに反映
+      const origHandler = existingInput.onchange;
+      existingInput.onchange = async function(e) {
+        if (origHandler) origHandler.call(this, e);
+        const file = e.target.files[0];
+        if (!file) return;
+        const dataUrl = await compressImage(file);
+        savedData[key] = dataUrl;
+        markDirty();
+      };
+      return;
+    }
+    el.addEventListener('click', async () => {
       const input = document.createElement('input');
       input.type = 'file';
       input.accept = 'image/*';
-      input.onchange = e => {
+      input.onchange = async e => {
         const file = e.target.files[0];
         if (!file) return;
-        const reader = new FileReader();
-        reader.onload = ev => {
-          el.src = ev.target.result;
-          savedData[key] = ev.target.result;
-          markDirty();
-          showToast('画像を変更しました');
-        };
-        reader.readAsDataURL(file);
+        const dataUrl = await compressImage(file);
+        el.src = dataUrl;
+        savedData[key] = dataUrl;
+        markDirty();
+        showToast('画像を変更しました');
       };
       input.click();
     });
@@ -290,6 +387,10 @@
 
   // ── 未保存マーク ─────────────────────────────────
   window.cmsMarkDirty = markDirty;
+  // 外部（addResident等）から医員名をsavedDataに登録する
+  window.cmsSaveResidentName = function(key, name) {
+    savedData[key] = name;
+  };
   function markDirty() {
     isDirty = true;
     const ind = document.getElementById('cms-dirty-indicator');
@@ -307,13 +408,39 @@
   }
 
   // ── 保存 ─────────────────────────────────────────
-  window.cmsSave = function() {
+  window.cmsSave = async function() {
+    const token = localStorage.getItem(PASSWORD_HASH_KEY);
+    const payload = Object.assign({}, savedData, { _token: token });
+
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(savedData));
-      clearDirty();
-      showToast('✅ 保存しました！', 'success');
+      const res = await fetch('cms-save.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const result = await res.json();
+
+      if (res.ok && result.success) {
+        // バックアップとしてlocalStorageにも保存
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(savedData)); } catch(e) {}
+        clearDirty();
+        showToast('✅ サーバーに保存しました！', 'success');
+      } else if (res.status === 401) {
+        showToast('⚠ 認証エラー：cms-save.php の ALLOWED_HASH を確認してください', 'error');
+      } else if (res.status === 503) {
+        showToast('⚠ cms-save.php の初回設定が未完了です', 'error');
+      } else {
+        throw new Error(result.error || 'Server error');
+      }
     } catch(e) {
-      showToast('⚠ 保存に失敗しました（ストレージ不足の可能性）', 'error');
+      // サーバー保存失敗 → localStorageにフォールバック
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(savedData));
+        clearDirty();
+        showToast('⚠ サーバー保存失敗。このブラウザにのみ保存しました。', 'error');
+      } catch(e2) {
+        showToast('⚠ 保存に失敗しました', 'error');
+      }
     }
   };
 
