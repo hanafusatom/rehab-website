@@ -42,7 +42,8 @@
       if (res.ok) {
         const serverData = await res.json();
         Object.entries(serverData).forEach(([k, v]) => {
-          if (!k.startsWith('_')) savedData[k] = v;
+          if (k === '_exported' || k === '_page' || k === '_token') return;
+          savedData[k] = v;
         });
         loadedFromServer = true;
       }
@@ -67,33 +68,11 @@
 
   // ── 保存データをページに反映 ─────────────────────
   function applyStoredData() {
-    Object.entries(savedData).forEach(([key, value]) => {
-      const el = document.querySelector(`[data-cms="${key}"]`);
-      if (!el) return;
-      if (el.tagName === 'IMG') {
-        el.src = value;
-        // onerrorで非表示にされた画像を再表示
-        el.style.display = 'block';
-        const placeholder = el.nextElementSibling;
-        if (placeholder && (placeholder.classList.contains('placeholder') || placeholder.classList.contains('placeholder-icon'))) {
-          placeholder.style.display = 'none';
-        }
-      } else if (el.tagName === 'CANVAS' && el.dataset.cmsType === 'resident-name') {
-        // 医員名：data-name属性を更新してcanvasを再描画
-        const card = el.closest('.staff-card-compact');
-        if (card) {
-          card.setAttribute('data-name', value);
-          if (typeof renderNameCanvas === 'function') {
-            const doRender = () => renderNameCanvas(el, value);
-            if (document.fonts && document.fonts.ready) {
-              document.fonts.ready.then(doRender);
-            } else {
-              setTimeout(doRender, 100);
-            }
-          }
-        }
-      } else {
-        el.innerHTML = value;
+    // ページコンテンツをコンテナ単位で丸ごと復元
+    document.querySelectorAll('[data-cms-container]').forEach(function(container) {
+      var containerKey = container.getAttribute('data-cms-container');
+      if (containerKey && savedData[containerKey]) {
+        container.innerHTML = savedData[containerKey];
       }
     });
   }
@@ -202,77 +181,61 @@
   }
 
   // ── 編集可能にする ────────────────────────────────
+  // コンテナ丸ごと保存方式：data-cms属性の有無に関わらず
+  // コンテンツ内の全テキスト要素を編集可能にする
+  var EDITABLE_SELECTOR = [
+    '[data-cms-container] h2',
+    '[data-cms-container] h3',
+    '[data-cms-container] h4',
+    '[data-cms-container] p',
+    '[data-cms-container] li',
+    '[data-cms-container] td',
+    '[data-cms-container] th',
+    '[data-cms-container] figcaption',
+    '[data-cms-container] .staff-position',
+    '[data-cms-container] .staff-name',
+    '[data-cms-container] .staff-name-en',
+    '[data-cms-container] .staff-specialty',
+    '[data-cms-container] .section-label',
+    '[data-cms-container] .greeting-text',
+    '[data-cms-container] .voice-text',
+    '[data-cms-container] .voice-name',
+    '[data-cms-container] .cta-text',
+    '[data-cms-container] .badge-new',
+    '[data-cms-container] [data-cms]'
+  ].join(', ');
+
   function makeEditable() {
-    document.querySelectorAll('[data-cms]').forEach(el => {
-      const key = el.dataset.cms;
-      const type = el.dataset.cmsType || 'text';
+    // 1) data-cms="image" の画像要素
+    document.querySelectorAll('[data-cms][data-cms-type="image"]').forEach(function(el) {
+      makeImageEditable(el, el.dataset.cms);
+    });
 
-      if (type === 'image') {
-        makeImageEditable(el, key);
-        return;
-      }
-
-      if (type === 'resident-name') {
-        makeResidentNameEditable(el, key);
-        return;
-      }
+    // 2) コンテンツ内の全テキスト要素を編集可能にする
+    document.querySelectorAll(EDITABLE_SELECTOR).forEach(function(el) {
+      // 画像・ファイルinput・ボタンはスキップ
+      if (el.tagName === 'IMG' || el.tagName === 'INPUT' || el.tagName === 'BUTTON') return;
+      if (el.classList.contains('staff-del-btn') || el.classList.contains('news-del-btn')) return;
+      if (el.classList.contains('staff-add-btn') || el.classList.contains('news-add-btn')) return;
 
       el.setAttribute('contenteditable', 'true');
       el.setAttribute('spellcheck', 'false');
 
-      // 既存のフォーカス処理
-      el.addEventListener('focus', () => {
+      el.addEventListener('focus', function() {
         el.classList.add('cms-focused');
-        showFloatingToolbar(el);
       });
 
-      el.addEventListener('blur', () => {
+      el.addEventListener('blur', function() {
         el.classList.remove('cms-focused');
-        // 変更を記録
-        const newVal = el.innerHTML;
-        if (savedData[key] !== newVal) {
-          savedData[key] = newVal;
-          markDirty();
-        }
-        hideFloatingToolbar();
-      });
-
-      el.addEventListener('input', () => {
-        savedData[key] = el.innerHTML;
         markDirty();
       });
 
-      // Enterキーの挙動（段落モード or 単行モード）
-      if (type === 'line') {
-        el.addEventListener('keydown', e => {
-          if (e.key === 'Enter') { e.preventDefault(); }
-        });
-      }
+      el.addEventListener('input', function() {
+        markDirty();
+      });
     });
   }
 
-  // ── 医員名編集（canvas要素をクリックで編集） ────
-  function makeResidentNameEditable(el, key) {
-    el.style.cursor = 'pointer';
-    el.title = 'クリックして氏名を変更';
-    el.addEventListener('click', () => {
-      const card = el.closest('.staff-card-compact');
-      const currentName = card ? card.getAttribute('data-name') : '';
-      const newName = prompt('医員の氏名を入力してください：', currentName);
-      if (newName === null || newName === currentName) return;
-      if (card) card.setAttribute('data-name', newName);
-      if (typeof renderNameCanvas === 'function') {
-        const doRender = () => renderNameCanvas(el, newName);
-        if (document.fonts && document.fonts.ready) {
-          document.fonts.ready.then(doRender);
-        } else {
-          setTimeout(doRender, 100);
-        }
-      }
-      savedData[key] = newName;
-      markDirty();
-    });
-  }
 
   // ── 画像圧縮 ─────────────────────────────────────
   function compressImage(file, maxWidth, quality) {
@@ -387,9 +350,15 @@
 
   // ── 未保存マーク ─────────────────────────────────
   window.cmsMarkDirty = markDirty;
-  // 外部（addResident等）から医員名をsavedDataに登録する
-  window.cmsSaveResidentName = function(key, name) {
-    savedData[key] = name;
+  // 外部（addNewsRow等）からテキスト値をsavedDataに保存する
+  window.cmsSaveField = function(key, value) {
+    savedData[key] = value;
+  };
+  // 外部（previewPhoto等）から画像をsavedDataに保存する
+  window.cmsSaveImage = async function(key, file) {
+    const dataUrl = await compressImage(file);
+    savedData[key] = dataUrl;
+    markDirty();
   };
   function markDirty() {
     isDirty = true;
@@ -407,8 +376,41 @@
     if (saveBtn) saveBtn.classList.remove('has-changes');
   }
 
+  // ── DOM上の全データを収集 ─────────────────────
+  function collectAllFromDOM() {
+    // ページコンテンツ全体を丸ごと保存（全編集内容を漏れなく保持）
+    document.querySelectorAll('[data-cms-container]').forEach(function(container) {
+      var containerKey = container.getAttribute('data-cms-container');
+      if (!containerKey) return;
+      // 編集モード用の属性を除去したクリーンなHTMLを保存
+      var clone = container.cloneNode(true);
+      // contenteditable / spellcheck 除去
+      clone.querySelectorAll('[contenteditable]').forEach(function(el) {
+        el.removeAttribute('contenteditable');
+      });
+      clone.querySelectorAll('[spellcheck]').forEach(function(el) {
+        el.removeAttribute('spellcheck');
+      });
+      // CMS編集モードのクラス・スタイル除去
+      clone.querySelectorAll('.cms-focused').forEach(function(el) {
+        el.classList.remove('cms-focused');
+      });
+      // 全ての削除・追加ボタン等のインラインstyle.displayを除去
+      // （CSSのdisplay:noneが効くようにする）
+      clone.querySelectorAll('[class*="-del-btn"], [class*="-del-cell"], [class*="-add-row"], [class*="-add-btn"]').forEach(function(el) {
+        el.style.display = '';
+      });
+      // ネストされた data-cms-container は除去（二重保存防止）
+      clone.querySelectorAll('[data-cms-container]').forEach(function(nested) {
+        nested.removeAttribute('data-cms-container');
+      });
+      savedData[containerKey] = clone.innerHTML;
+    });
+  }
+
   // ── 保存 ─────────────────────────────────────────
   window.cmsSave = async function() {
+    collectAllFromDOM();
     const token = localStorage.getItem(PASSWORD_HASH_KEY);
     const payload = Object.assign({}, savedData, { _token: token });
 
@@ -446,6 +448,7 @@
 
   // ── JSONで書き出し ───────────────────────────────
   window.cmsExport = function() {
+    collectAllFromDOM();
     // ページごとのキーを収集してJSONに整形
     const exportData = {
       _exported: new Date().toISOString(),

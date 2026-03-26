@@ -262,16 +262,24 @@
       let skipped = 0;
 
       for (const [key, value] of Object.entries(jsonData)) {
-        if (key.startsWith('_')) continue;
+        // メタデータはスキップ（_exported, _page, _token）
+        if (key === '_exported' || key === '_page' || key === '_token') continue;
+        if (key.endsWith('_name_img')) continue;
+
+        // ページコンテナ（data-cms-container）の復元
+        const container = doc.querySelector('[data-cms-container="' + key + '"]');
+        if (container) {
+          container.innerHTML = value;
+          applied++;
+          continue;
+        }
+
+        // 個別要素の復元
         const el = doc.querySelector('[data-cms="' + key + '"]');
         if (!el) { skipped++; continue; }
 
         if (el.tagName === 'IMG') {
           el.src = value;
-        } else if (el.tagName === 'CANVAS' && el.dataset.cmsType === 'resident-name') {
-          // 医員名：親カードのdata-name属性を更新（ページ読込時にcanvas描画される）
-          const card = el.closest('.staff-card-compact');
-          if (card) card.setAttribute('data-name', value);
         } else {
           el.innerHTML = value;
         }
